@@ -1,0 +1,23 @@
+<svg width="100%" viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+<style>.bg4{fill:#08121c}.wall{fill:#0f2235;stroke:#1e3d5f;stroke-width:1.5}.rack-t{fill:#112540;stroke:#1e4068;stroke-width:0.6}.rack-tl{fill:#162e50;stroke:#2a5280;stroke-width:0.5}.aisle{fill:#0a1826}.door{fill:#1a3d5f;stroke:#2e6096;stroke-width:0.8}.lbl{fill:#2e6eb8;font-family:sans-serif;font-size:9px}.dl{stroke:#162e4a;stroke-width:0.5}.dt{fill:#162e4a;font-family:monospace;font-size:8px}</style>
+<rect width="680" height="300" class="bg4"/>
+<rect x="60" y="30" width="560" height="240" class="wall"/>
+<rect x="66" y="36" width="548" height="228" class="aisle"/>
+<rect x="130" y="256" width="40" height="12" class="door"/><rect x="200" y="256" width="40" height="12" class="door"/><rect x="270" y="256" width="40" height="12" class="door"/>
+<rect x="608" y="100" width="12" height="36" class="door"/><rect x="608" y="160" width="12" height="36" class="door"/>
+<rect x="80" y="50" width="100" height="18" class="rack-t"/><rect x="80" y="72" width="100" height="18" class="rack-t"/><rect x="80" y="104" width="100" height="18" class="rack-t"/><rect x="80" y="126" width="100" height="18" class="rack-t"/><rect x="80" y="158" width="100" height="18" class="rack-t"/><rect x="80" y="180" width="100" height="18" class="rack-t"/><rect x="80" y="212" width="100" height="18" class="rack-t"/><rect x="80" y="234" width="100" height="18" class="rack-t"/>
+<rect x="200" y="50" width="120" height="18" class="rack-tl"/><rect x="200" y="72" width="120" height="18" class="rack-tl"/><rect x="200" y="104" width="120" height="18" class="rack-tl"/><rect x="200" y="126" width="120" height="18" class="rack-tl"/><rect x="200" y="158" width="120" height="18" class="rack-tl"/><rect x="200" y="180" width="120" height="18" class="rack-tl"/><rect x="200" y="212" width="120" height="18" class="rack-tl"/><rect x="200" y="234" width="120" height="18" class="rack-tl"/>
+<rect x="340" y="50" width="120" height="18" class="rack-t"/><rect x="340" y="72" width="120" height="18" class="rack-t"/><rect x="340" y="104" width="120" height="18" class="rack-t"/><rect x="340" y="126" width="120" height="18" class="rack-t"/><rect x="340" y="158" width="120" height="18" class="rack-t"/><rect x="340" y="180" width="120" height="18" class="rack-t"/><rect x="340" y="212" width="120" height="18" class="rack-t"/><rect x="340" y="234" width="120" height="18" class="rack-t"/>
+<rect x="480" y="50" width="100" height="18" class="rack-tl"/><rect x="480" y="72" width="100" height="18" class="rack-tl"/><rect x="480" y="104" width="100" height="18" class="rack-tl"/><rect x="480" y="126" width="100" height="18" class="rack-tl"/><rect x="480" y="158" width="100" height="18" class="rack-tl"/><rect x="480" y="180" width="100" height="18" class="rack-tl"/><rect x="480" y="212" width="100" height="18" class="rack-tl"/><rect x="480" y="234" width="100" height="18" class="rack-tl"/>
+<line x1="155" y1="50" x2="155" y2="250" stroke="#1a3550" stroke-width="0.4" stroke-dasharray="4 3"/>
+<line x1="295" y1="50" x2="295" y2="250" stroke="#1a3550" stroke-width="0.4" stroke-dasharray="4 3"/>
+<line x1="435" y1="50" x2="435" y2="250" stroke="#1a3550" stroke-width="0.4" stroke-dasharray="4 3"/>
+<rect x="66" y="136" width="548" height="26" class="aisle"/>
+<line x1="66" y1="148" x2="608" y2="148" stroke="#1a3550" stroke-width="0.4" stroke-dasharray="6 3"/>
+<line x1="60" y1="20" x2="620" y2="20" class="dl"/><line x1="60" y1="16" x2="60" y2="24" class="dl"/><line x1="620" y1="16" x2="620" y2="24" class="dl"/>
+<text x="340" y="16" class="dt" text-anchor="middle">60 000 mm</text>
+<text x="130" y="96" style="fill:#1e4a72;font-family:sans-serif;font-size:8px" text-anchor="middle">A</text>
+<text x="260" y="96" style="fill:#1e4a72;font-family:sans-serif;font-size:8px" text-anchor="middle">B</text>
+<text x="400" y="96" style="fill:#1e4a72;font-family:sans-serif;font-size:8px" text-anchor="middle">C</text>
+<text x="530" y="96" style="fill:#1e4a72;font-family:sans-serif;font-size:8px" text-anchor="middle">D</text>
+</svg>

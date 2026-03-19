@@ -1,0 +1,24 @@
+<svg width="100%" viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg">
+<style>.bg6{fill:#09131d}.fl6{fill:#0c1e2e;stroke:#162e44;stroke-width:0.6}.up6{fill:#152840;stroke:#1e4068;stroke-width:0.8}.bm6{fill:#1a3254;stroke:#244870;stroke-width:0.6}.new6{fill:#163048;stroke:#2a5888;stroke-width:1}.sc6{stroke:#142840;stroke-width:0.8;fill:none}.gw6{fill:#1e4a72;opacity:0.12}</style>
+<rect width="680" height="220" class="bg6"/>
+<rect x="0" y="190" width="680" height="30" class="fl6"/>
+<line x1="0" y1="190" x2="680" y2="190" stroke="#162e44" stroke-width="0.8"/>
+<ellipse cx="340" cy="10" rx="100" ry="20" class="gw6"/>
+<rect x="140" y="20" width="14" height="170" class="up6"/>
+<circle cx="147" cy="50" r="3" fill="#09131d"/><circle cx="147" cy="90" r="3" fill="#09131d"/><circle cx="147" cy="130" r="3" fill="#09131d"/>
+<rect x="526" y="20" width="14" height="170" class="up6"/>
+<circle cx="533" cy="50" r="3" fill="#09131d"/><circle cx="533" cy="90" r="3" fill="#09131d"/><circle cx="533" cy="130" r="3" fill="#09131d"/>
+<rect x="140" y="150" width="400" height="10" class="bm6"/>
+<rect x="140" y="176" width="400" height="10" class="bm6"/>
+<rect x="154" y="110" width="370" height="9" class="new6" transform="rotate(-0.8,154,114)"/>
+<rect x="154" y="60" width="372" height="9" fill="none" stroke="#1e4272" stroke-width="0.8" stroke-dasharray="5 3"/>
+<rect x="580" y="30" width="38" height="160" fill="none" stroke="#12243a" stroke-width="0.8"/>
+<line x1="580" y1="100" x2="618" y2="100" class="sc6" stroke="#12243a"/>
+<line x1="580" y1="155" x2="618" y2="155" class="sc6" stroke="#12243a"/>
+<rect x="578" y="96" width="42" height="6" class="up6" opacity="0.6"/>
+<rect x="578" y="151" width="42" height="6" class="up6" opacity="0.6"/>
+<line x1="154" y1="150" x2="526" y2="150" stroke="#2e6eb8" stroke-width="0.4" stroke-dasharray="2 3" opacity="0.5"/>
+<circle cx="140" cy="150" r="3" fill="#2e6eb8" opacity="0.4"/>
+<rect x="132" y="185" width="30" height="7" class="bm6"/>
+<rect x="518" y="185" width="30" height="7" class="bm6"/>
+</svg>
