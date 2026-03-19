@@ -4,10 +4,9 @@ Professional website for Summit Industrial Group, a warehouse racking design, in
 
 ## Features
 
-- **Trilingual (EN / 中文 / ES)** — English, Chinese, and Spanish with one-click switching. Language preference is saved in localStorage.
+- **Bilingual (EN / 中文)** — Full English and Chinese language support with one-click switching. Language preference is saved in localStorage.
 - **Responsive** — Mobile-first layout, works on all screen sizes.
 - **5 Sections** — Hero, Services, Process, Why Us, Contact/Quote form.
-- **Original SVG imagery** — All 9 images are custom-built SVG illustrations, no external image dependencies.
 - **No dependencies** — Pure HTML, CSS, and vanilla JavaScript. No frameworks or build tools required.
 - **GitHub Pages ready** — Deploy instantly with zero configuration.
 
@@ -15,57 +14,79 @@ Professional website for Summit Industrial Group, a warehouse racking design, in
 
 ```
 summit-industrial-group/
-├── index.html
+├── index.html          # Main HTML file
 ├── css/
-│   └── style.css
+│   └── style.css       # All styles
 ├── js/
-│   └── main.js
-├── images/
-│   ├── hero-warehouse.svg
-│   ├── svc-racking-design.svg
-│   ├── svc-installation.svg
-│   ├── svc-repair.svg
-│   ├── svc-consulting.svg
-│   ├── proc-assessment.svg
-│   ├── proc-installation.svg
-│   ├── proc-completed.svg
-│   └── why-warehouse.svg
+│   └── main.js         # Language switching, form, scroll animations
+├── images/             # Place your own images here
+│   └── .gitkeep
 └── README.md
 ```
 
-## Deploy to GitHub Pages
+## Getting Started
 
-1. Push this repo to GitHub
-2. Settings → Pages → Deploy from branch → main → / (root)
-3. Live at `https://yourusername.github.io/summit-industrial-group/`
+### Run locally
+Just open `index.html` in any browser — no server or build step needed.
 
-## Custom Domain
+### Deploy to GitHub Pages
+1. Push this repository to GitHub
+2. Go to **Settings → Pages**
+3. Set source to **Deploy from a branch → main → / (root)**
+4. Your site will be live at `https://yourusername.github.io/summit-industrial-group/`
 
-Add a `CNAME` file with your domain name, e.g. `www.summitindustrialgroup.com`
+### Deploy to custom domain
+1. Add a `CNAME` file to the repo root containing your domain, e.g.:
+   ```
+   www.summitindustrialgroup.com
+   ```
+2. Point your DNS to GitHub Pages (follow GitHub's documentation)
 
 ## Customization
 
-**Contact info** — search and replace in `index.html`:
-- `info@summitindustrialgroup.com`
-- `+1 (555) 000-0000`
+### Update contact info
+In `index.html`, search for and replace:
+- `info@summitindustrialgroup.com` → your email
+- `+1 (555) 000-0000` → your phone number
+- `Mon–Fri, 8:00 AM – 5:00 PM` → your hours
 
-**Colors** — CSS variables in `css/style.css`:
+### Update stats (Hero section)
+Search for `stat-num` in `index.html` and update the numbers (500+, 10+, 100%, 48h).
+
+### Replace images
+Current images use Unsplash URLs. To use your own:
+1. Add images to the `/images/` folder
+2. Replace `https://images.unsplash.com/...` URLs in `index.html` with `images/your-image.jpg`
+
+### Colors
+All colors are defined as CSS variables in `css/style.css`:
 ```css
 :root {
-  --navy:    #1b3d5f;
-  --navy-dk: #0f2540;
-  --navy-lt: #2c5f96;
+  --navy:    #1b3d5f;   /* Primary navy */
+  --navy-dk: #0f2540;   /* Dark navy (nav, footer) */
+  --navy-lt: #2c5f96;   /* Light navy (CTA button) */
+  --muted:   #6a8aaa;   /* Muted text */
 }
 ```
 
-**Add a language** — add `data-xx="..."` to all elements with `data-en`, add a button `<button class="lang-btn" onclick="setLang('xx')">XX</button>`, and add a placeholder case in `js/main.js`.
+### Add a language
+To add a third language (e.g., Spanish):
+1. Add `data-es="..."` attributes to all elements that have `data-en`
+2. Add a button in the `.lang-switcher` div: `<button class="lang-btn" data-lang="es">ES</button>`
+3. Update the placeholder map in `js/main.js`
 
 ## Form Handling
 
-Front-end only by default. To receive real submissions:
-- **Formspree** — add `action="https://formspree.io/f/YOUR_ID"` to a `<form>` tag
-- **Netlify Forms** — add `netlify` attribute to the form
-- **EmailJS** — call their API inside `submitForm()` in `js/main.js`
+The contact form currently shows a success message on submit (front-end only). To receive actual submissions, integrate one of:
+
+- **Formspree** — Add `action="https://formspree.io/f/YOUR_ID"` to a `<form>` tag
+- **EmailJS** — Call their API on submit
+- **Netlify Forms** — Add `netlify` attribute if hosting on Netlify
+- **Your own backend** — POST to your API endpoint in `main.js → submitForm()`
+
+## Browser Support
+
+Chrome, Firefox, Safari, Edge (last 2 versions). IE not supported.
 
 ## License
 

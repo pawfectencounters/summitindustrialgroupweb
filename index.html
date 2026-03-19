@@ -1,382 +1,503 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Summit Industrial Group</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#1b3d5f;--navy-dk:#0f2540;--navy-lt:#2c5f96;--white:#fff;--off:#f4f6f9;--mid:#e8edf3;--muted:#6a8aaa;--text:#1a2a3a}
-html{scroll-behavior:smooth}
-body{font-family:'Barlow',sans-serif;color:var(--text);background:#fff;overflow-x:hidden}
-.lang-switcher{display:flex;border:1px solid rgba(255,255,255,0.22);overflow:hidden;margin-left:8px}
-.lang-btn{padding:6px 14px;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;border:none;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.5);transition:all .2s}
-.lang-btn.active{background:#fff;color:var(--navy-dk)}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,37,64,0.97);backdrop-filter:blur(8px);padding:0 48px;height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.08)}
-.nav-logo svg{height:56px}
-.nav-links{display:flex;gap:36px;align-items:center}
-.nav-links a{color:rgba(255,255,255,0.75);text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;transition:color .2s}
-.nav-links a:hover{color:#fff}
-.nav-cta{background:var(--navy-lt)!important;color:#fff!important;padding:9px 22px;border:1px solid rgba(255,255,255,0.2)}
-.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:130px 48px 90px}
-.hero-bg{position:absolute;inset:0;background-image:url('images/hero-warehouse.svg');background-size:cover;background-position:center;filter:brightness(0.25) saturate(0.55)}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(10,25,40,0.92) 45%,rgba(10,25,40,0.45) 100%)}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px}
-.hero-content{position:relative;z-index:2;max-width:700px}
-.hero-tag{display:inline-flex;align-items:center;gap:10px;font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:30px}
-.hero-tag::before{content:'';width:30px;height:1px;background:rgba(255,255,255,0.3)}
-.hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(52px,7vw,92px);font-weight:700;color:#fff;line-height:0.95;letter-spacing:-1px;text-transform:uppercase;margin-bottom:28px}
-.hero h1 em{display:block;color:rgba(255,255,255,0.28);font-weight:400;font-style:normal}
-.hero-sub{font-size:17px;font-weight:300;color:rgba(255,255,255,0.58);line-height:1.75;max-width:480px;margin-bottom:46px}
-.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
-.btn-p{display:inline-flex;align-items:center;background:#fff;color:var(--navy-dk);padding:14px 32px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:transform .2s,box-shadow .2s}
-.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
-.btn-s{display:inline-flex;align-items:center;border:1px solid rgba(255,255,255,0.22);color:rgba(255,255,255,0.75);padding:14px 32px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:500;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .2s}
-.btn-s:hover{border-color:rgba(255,255,255,0.55);color:#fff}
-.hero-stats{position:absolute;bottom:48px;left:48px;right:48px;display:flex;gap:48px;z-index:2;border-top:1px solid rgba(255,255,255,0.08);padding-top:30px}
-.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:700;color:#fff;letter-spacing:-1px}
-.stat-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-top:3px}
-section{padding:100px 48px}
-.section-tag{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px;margin-bottom:14px}
-.section-tag::before{content:'';width:22px;height:2px;background:var(--navy)}
-.section-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(36px,4vw,56px);font-weight:700;text-transform:uppercase;color:var(--navy-dk);line-height:1;letter-spacing:-0.5px}
-#services{background:var(--off)}
-.services-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:60px;flex-wrap:wrap;gap:22px}
-.services-intro{font-size:15px;color:var(--muted);line-height:1.7;max-width:350px}
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px}
-.service-card{background:#fff;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s}
-.service-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(15,37,64,0.12);z-index:1}
-.svc-img{height:200px;overflow:hidden}
-.svc-img img{width:100%;height:100%;object-fit:cover;filter:saturate(0.65) brightness(0.9);transition:filter .35s,transform .35s}
-.service-card:hover .svc-img img{filter:saturate(1) brightness(1);transform:scale(1.04)}
-.svc-body{padding:36px 30px}
-.svc-num{font-family:'Barlow Condensed',sans-serif;font-size:64px;font-weight:700;color:var(--mid);line-height:1;position:absolute;top:204px;right:18px;user-select:none}
-.service-card h3{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;text-transform:uppercase;color:var(--navy-dk);letter-spacing:0.5px;margin-bottom:12px}
-.service-card p{font-size:14px;color:var(--muted);line-height:1.75}
-.service-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--navy);transform:scaleX(0);transform-origin:left;transition:transform .3s}
-.service-card:hover::after{transform:scaleX(1)}
-#process{background:var(--navy-dk)}
-#process .section-tag{color:rgba(255,255,255,0.28)}
-#process .section-tag::before{background:rgba(255,255,255,0.28)}
-#process .section-title{color:#fff}
-.process-hd{margin-bottom:68px}
-.process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));margin-bottom:64px}
-.step{padding-right:22px}
-.step-n{width:56px;height:56px;border:1px solid rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:22px;background:var(--navy-dk);transition:background .25s,border-color .25s}
-.step:hover .step-n{background:var(--navy-lt);border-color:var(--navy-lt)}
-.step h4{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:#fff;margin-bottom:9px}
-.step p{font-size:13px;color:rgba(255,255,255,0.42);line-height:1.75}
-.process-imgs{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
-.proc-img{position:relative;height:240px;overflow:hidden}
-.proc-img img{width:100%;height:100%;object-fit:cover;filter:brightness(0.5) saturate(0.55);transition:filter .4s,transform .4s}
-.proc-img:hover img{filter:brightness(0.72) saturate(0.9);transform:scale(1.04)}
-.proc-label{position:absolute;bottom:20px;left:20px;z-index:2;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,0.9);pointer-events:none}
-.proc-label small{display:block;font-size:9px;font-weight:400;color:rgba(255,255,255,0.45);letter-spacing:1.5px;margin-bottom:3px}
-#why{background:#fff}
-.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;margin-top:60px}
-.why-pts{display:flex;flex-direction:column;gap:28px}
-.why-pt{display:flex;gap:18px;align-items:flex-start;padding-bottom:28px;border-bottom:1px solid var(--mid)}
-.why-pt:last-child{border-bottom:none;padding-bottom:0}
-.why-ico{width:36px;height:36px;flex-shrink:0;background:var(--off);display:flex;align-items:center;justify-content:center}
-.why-pt h4{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:600;text-transform:uppercase;color:var(--navy-dk);margin-bottom:5px}
-.why-pt p{font-size:14px;color:var(--muted);line-height:1.7}
-.why-visual{position:relative;overflow:hidden;min-height:480px;display:flex;align-items:flex-end}
-.why-bg{position:absolute;inset:0}
-.why-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(0.22) saturate(0.45)}
-.why-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,20,31,0.93) 38%,rgba(8,20,31,0.32) 100%)}
-.why-content{position:relative;z-index:2;padding:40px}
-.why-quote{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:400;color:rgba(255,255,255,0.55);line-height:1.38;margin-top:24px}
-.why-quote strong{color:#fff;font-weight:700}
-#contact{background:var(--off)}
-.contact-wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:72px;margin-top:60px}
-.contact-info h3{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;text-transform:uppercase;color:var(--navy-dk);margin-bottom:14px}
-.contact-info p{font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:30px}
-.c-items{display:flex;flex-direction:column;gap:15px}
-.c-item{display:flex;align-items:center;gap:13px;font-size:14px;color:var(--text)}
-.c-ico{width:34px;height:34px;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.contact-form{background:#fff;padding:44px;box-shadow:0 4px 40px rgba(15,37,64,0.06)}
-.form-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;text-transform:uppercase;color:var(--navy-dk);margin-bottom:26px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.form-g{margin-bottom:18px}
-label{display:block;font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
-input,select,textarea{width:100%;border:1px solid var(--mid);background:var(--off);padding:11px 14px;font-family:'Barlow',sans-serif;font-size:13px;color:var(--text);outline:none;transition:border-color .2s,background .2s;appearance:none}
-input:focus,select:focus,textarea:focus{border-color:var(--navy);background:#fff}
-textarea{resize:vertical;min-height:90px}
-.form-submit{width:100%;background:var(--navy-dk);color:#fff;border:none;padding:15px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-top:5px;transition:background .2s,transform .15s}
-.form-submit:hover{background:var(--navy-lt);transform:translateY(-1px)}
-.form-ok{display:none;text-align:center;padding:40px 16px}
-.form-ok.show{display:block}
-.form-ok h4{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;text-transform:uppercase;color:var(--navy-dk);margin-bottom:10px}
-.form-ok p{color:var(--muted);font-size:13px}
-footer{background:#060d18;padding:42px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
-.footer-copy{font-size:11px;color:rgba(255,255,255,0.22)}
-.footer-links{display:flex;gap:26px}
-.footer-links a{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.28);text-decoration:none;transition:color .2s}
-.footer-links a:hover{color:rgba(255,255,255,0.65)}
-@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
-.fu{opacity:0;animation:fadeUp .7s ease forwards}
-.d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.4s}.d4{animation-delay:.55s}
-@media(max-width:768px){nav{padding:0 20px;height:66px}.nav-links{display:none}.nav-logo svg{height:42px}section{padding:64px 22px}.hero{padding:100px 22px 160px}.hero-stats{left:22px;right:22px;flex-wrap:wrap;gap:20px}.why-grid,.contact-wrap{grid-template-columns:1fr;gap:40px}.form-row{grid-template-columns:1fr}.process-imgs{grid-template-columns:1fr}footer{flex-direction:column;text-align:center;padding:30px 22px}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Summit Industrial Group — Professional warehouse racking design, installation, repair, and storage consulting services.">
+  <meta name="keywords" content="warehouse racking, pallet rack installation, storage solutions, industrial shelving, racking design">
+  <meta property="og:title" content="Summit Industrial Group">
+  <meta property="og:description" content="End-to-end warehouse racking solutions — from design to installation and beyond.">
+  <meta property="og:type" content="website">
+  <title>Summit Industrial Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+<!-- ── Navigation ── -->
 <nav>
   <div class="nav-logo">
-    <svg viewBox="0 0 400 68" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 400 68" xmlns="http://www.w3.org/2000/svg" aria-label="Summit Industrial Group">
       <g transform="translate(0,34)">
         <polygon points="0,20 14,20 44,-20 30,-20" fill="#fff" opacity="0.3"/>
         <polygon points="18,20 36,20 66,-20 48,-20" fill="#fff" opacity="0.65"/>
         <polygon points="42,20 70,20 100,-20 72,-20" fill="#fff"/>
       </g>
-      <text font-family="'Barlow Condensed',sans-serif" font-size="42" font-weight="700" letter-spacing="5" fill="#ffffff" x="118" y="46">SUMMIT</text>
-      <text font-family="'Barlow Condensed',sans-serif" font-size="11" font-weight="400" letter-spacing="4.5" fill="rgba(255,255,255,0.45)" x="120" y="63">INDUSTRIAL GROUP</text>
+      <text font-family="'Barlow Condensed',sans-serif" font-size="42" font-weight="700"
+            letter-spacing="5" fill="#ffffff" x="118" y="46">SUMMIT</text>
+      <text font-family="'Barlow Condensed',sans-serif" font-size="11" font-weight="400"
+            letter-spacing="4.5" fill="rgba(255,255,255,0.45)" x="120" y="63">INDUSTRIAL GROUP</text>
     </svg>
   </div>
   <div class="nav-links">
-    <a href="#services" data-en="Services" data-zh="服务项目" data-es="Servicios">Services</a>
-    <a href="#process" data-en="Process" data-zh="服务流程" data-es="Proceso">Process</a>
-    <a href="#why" data-en="Why Us" data-zh="为何选择我们" data-es="Por qué nosotros">Why Us</a>
-    <a href="#contact" class="nav-cta" data-en="Get a Quote" data-zh="获取报价" data-es="Solicitar cotización">Get a Quote</a>
+    <a href="#services" data-en="Services" data-zh="服务项目">Services</a>
+    <a href="#process" data-en="Process" data-zh="服务流程">Process</a>
+    <a href="#why" data-en="Why Us" data-zh="为何选择我们">Why Us</a>
+    <a href="#contact" class="nav-cta" data-en="Get a Quote" data-zh="获取报价">Get a Quote</a>
     <div class="lang-switcher">
-      <button class="lang-btn active" onclick="setLang('en')">EN</button>
-      <button class="lang-btn" onclick="setLang('zh')">中文</button>
-      <button class="lang-btn" onclick="setLang('es')">ES</button>
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="zh">中文</button>
     </div>
   </div>
 </nav>
 
+<!-- ── Hero ── -->
 <section class="hero" id="home">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-grid"></div>
+
   <div class="hero-content">
-    <div class="hero-tag fu" data-en="Warehouse Storage Solutions" data-zh="仓储货架解决方案" data-es="Soluciones de almacenamiento industrial">Warehouse Storage Solutions</div>
+    <div class="hero-tag fu" data-en="Warehouse Storage Solutions" data-zh="仓储货架解决方案">
+      Warehouse Storage Solutions
+    </div>
     <h1 class="fu d1">
-      <em data-en="Your Warehouse." data-zh="您的仓库，" data-es="Su almacén.">Your Warehouse.</em>
-      <span data-en="Engineered" data-zh="精工设计" data-es="Diseñado">Engineered</span><br>
-      <span data-en="to Perform." data-zh="卓越呈现。" data-es="para Rendir.">to Perform.</span>
+      <em data-en="Your Warehouse." data-zh="您的仓库，">Your Warehouse.</em>
+      <span data-en="Engineered" data-zh="精工设计">Engineered</span><br>
+      <span data-en="to Perform." data-zh="卓越呈现。">to Perform.</span>
     </h1>
-    <p class="hero-sub fu d2" data-en="Summit Industrial Group designs, supplies, and installs industrial racking systems built to last — maximizing every square foot of your warehouse while keeping your team safe." data-zh="Summit Industrial Group 为您提供从设计、供货到安装的全流程仓储货架解决方案，在保障安全的前提下，最大化利用每一寸仓储空间。" data-es="Summit Industrial Group diseña, suministra e instala sistemas de estanterías industriales duraderos — maximizando cada metro cuadrado de su almacén y manteniendo a su equipo seguro.">Summit Industrial Group designs, supplies, and installs industrial racking systems built to last — maximizing every square foot of your warehouse while keeping your team safe.</p>
+    <p class="hero-sub fu d2"
+       data-en="Summit Industrial Group designs, supplies, and installs industrial racking systems built to last — maximizing every square foot of your warehouse while keeping your team safe."
+       data-zh="Summit Industrial Group 为您提供从设计、供货到安装的全流程仓储货架解决方案，在保障安全的前提下，最大化利用每一寸仓储空间。">
+      Summit Industrial Group designs, supplies, and installs industrial racking systems built to last — maximizing every square foot of your warehouse while keeping your team safe.
+    </p>
     <div class="hero-btns fu d3">
-      <a href="#contact" class="btn-p" data-en="Get a Free Quote" data-zh="免费获取报价" data-es="Cotización gratuita">Get a Free Quote</a>
-      <a href="#services" class="btn-s" data-en="Our Services" data-zh="查看服务" data-es="Nuestros servicios">Our Services</a>
+      <a href="#contact" class="btn-p" data-en="Get a Free Quote" data-zh="免费获取报价">Get a Free Quote</a>
+      <a href="#services" class="btn-s" data-en="Our Services" data-zh="查看服务">Our Services</a>
     </div>
   </div>
+
   <div class="hero-stats fu d4">
-    <div><div class="stat-num">500+</div><div class="stat-label" data-en="Projects Completed" data-zh="完成项目" data-es="Proyectos completados">Projects Completed</div></div>
-    <div><div class="stat-num">10+</div><div class="stat-label" data-en="Years Experience" data-zh="行业经验" data-es="Años de experiencia">Years Experience</div></div>
-    <div><div class="stat-num">100%</div><div class="stat-label" data-en="Safety Certified" data-zh="安全认证" data-es="Certificado en seguridad">Safety Certified</div></div>
-    <div><div class="stat-num">48h</div><div class="stat-label" data-en="Quote Turnaround" data-zh="报价周期" data-es="Respuesta de cotización">Quote Turnaround</div></div>
+    <div>
+      <div class="stat-num">500+</div>
+      <div class="stat-label" data-en="Projects Completed" data-zh="完成项目">Projects Completed</div>
+    </div>
+    <div>
+      <div class="stat-num">10+</div>
+      <div class="stat-label" data-en="Years Experience" data-zh="行业经验">Years Experience</div>
+    </div>
+    <div>
+      <div class="stat-num">100%</div>
+      <div class="stat-label" data-en="Safety Certified" data-zh="安全认证">Safety Certified</div>
+    </div>
+    <div>
+      <div class="stat-num">48h</div>
+      <div class="stat-label" data-en="Quote Turnaround" data-zh="报价周期">Quote Turnaround</div>
+    </div>
   </div>
 </section>
 
+<!-- ── Services ── -->
 <section id="services">
   <div class="services-header">
     <div>
-      <div class="section-tag" data-en="What We Do" data-zh="我们的业务" data-es="Lo que hacemos">What We Do</div>
-      <h2 class="section-title" data-en="Our Services" data-zh="服务项目" data-es="Nuestros servicios">Our Services</h2>
+      <div class="section-tag" data-en="What We Do" data-zh="我们的业务">What We Do</div>
+      <h2 class="section-title" data-en="Our Services" data-zh="服务项目">Our Services</h2>
     </div>
-    <p class="services-intro" data-en="End-to-end warehouse racking solutions — from initial consultation through installation and ongoing maintenance." data-zh="从初步咨询到安装交付，再到后续维护，提供仓储货架全流程一站式服务。" data-es="Soluciones completas de estanterías — desde la consulta inicial hasta la instalación y el mantenimiento continuo.">End-to-end warehouse racking solutions — from initial consultation through installation and ongoing maintenance.</p>
+    <p class="services-intro"
+       data-en="End-to-end warehouse racking solutions — from initial consultation through installation and ongoing maintenance."
+       data-zh="从初步咨询到安装交付，再到后续维护，提供仓储货架全流程一站式服务。">
+      End-to-end warehouse racking solutions — from initial consultation through installation and ongoing maintenance.
+    </p>
   </div>
+
   <div class="services-grid">
+
     <div class="service-card">
-      <div class="svc-img"><img src="images/svc-racking-design.svg" alt="Racking Design"></div>
+      <div class="svc-img">
+        <img src="https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=700&q=80"
+             alt="Warehouse racking design" loading="lazy">
+      </div>
       <div class="svc-num">01</div>
       <div class="svc-body">
-        <h3 data-en="Racking Design" data-zh="货架设计" data-es="Diseño de estanterías" data-es="Diseño de estanterías">Racking Design</h3>
-        <p data-en="Custom racking layouts engineered for your floor plan, load specs, and workflow — including structural calculations and full compliance documentation before a single bolt is placed." data-zh="根据平面图、荷载要求和工作流程量身定制货架布局，涵盖结构计算与合规文件，安装前一切准备到位。" data-es="Diseños personalizados según su plano, carga y flujo de trabajo — con cálculos estructurales y documentación de cumplimiento antes de instalar.">Custom racking layouts engineered for your floor plan, load specs, and workflow — including structural calculations and full compliance documentation before a single bolt is placed.</p>
+        <h3 data-en="Racking Design" data-zh="货架设计">Racking Design</h3>
+        <p data-en="Custom racking layouts engineered for your floor plan, load specs, and workflow — including structural calculations and full compliance documentation before a single bolt is placed."
+           data-zh="根据平面图、荷载要求和工作流程量身定制货架布局，涵盖结构计算与合规文件，安装前一切准备到位。">
+          Custom racking layouts engineered for your floor plan, load specs, and workflow — including structural calculations and full compliance documentation before a single bolt is placed.
+        </p>
       </div>
     </div>
+
     <div class="service-card">
-      <div class="svc-img"><img src="images/svc-installation.svg" alt="Rack Installation"></div>
+      <div class="svc-img">
+        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=700&q=80"
+             alt="Rack installation" loading="lazy">
+      </div>
       <div class="svc-num">02</div>
       <div class="svc-body">
-        <h3 data-en="Rack Installation" data-zh="货架安装" data-es="Instalación de estanterías" data-es="Instalación de estanterías">Rack Installation</h3>
-        <p data-en="Our certified crews install on your schedule, minimizing disruption. Every rack is laser-leveled, anchor-tested, and signed off by our site supervisor before we leave." data-zh="认证团队按您的时间安排施工，最大限度减少运营干扰。每组货架均经激光校平和锚固测试，现场主管确认达标后交付。" data-es="Nuestros equipos certificados instalan según su agenda, minimizando interrupciones. Cada estantería es nivelada con láser y aprobada por nuestro supervisor antes de retirarnos.">Our certified crews install on your schedule, minimizing disruption. Every rack is laser-leveled, anchor-tested, and signed off by our site supervisor before we leave.</p>
+        <h3 data-en="Rack Installation" data-zh="货架安装">Rack Installation</h3>
+        <p data-en="Our certified crews install on your schedule, minimizing disruption. Every rack is laser-leveled, anchor-tested, and signed off by our site supervisor before we leave."
+           data-zh="认证团队按您的时间安排施工，最大限度减少运营干扰。每组货架均经激光校平和锚固测试，现场主管确认达标后交付。">
+          Our certified crews install on your schedule, minimizing disruption. Every rack is laser-leveled, anchor-tested, and signed off by our site supervisor before we leave.
+        </p>
       </div>
     </div>
+
     <div class="service-card">
-      <div class="svc-img"><img src="images/svc-repair.svg" alt="Repair"></div>
+      <div class="svc-img">
+        <img src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=700&q=80"
+             alt="Rack repair and modification" loading="lazy">
+      </div>
       <div class="svc-num">03</div>
       <div class="svc-body">
-        <h3 data-en="Repair & Modification" data-zh="维修改造" data-es="Reparación y modificación">Repair & Modification</h3>
-        <p data-en="Damaged uprights or beams don't mean shutdown. We assess, repair, or reconfigure your existing racking quickly — restoring safety and capacity with minimal downtime." data-zh="立柱或横梁损坏不代表必须停工。我们快速评估并维修或重新配置现有货架，以最短停工时间恢复安全性和承载能力。" data-es="Los montantes o vigas dañados no significan paro total. Evaluamos, reparamos o reconfiguramos su sistema rápidamente, restaurando seguridad y capacidad con mínimo tiempo de inactividad.">Damaged uprights or beams don't mean shutdown. We assess, repair, or reconfigure your existing racking quickly — restoring safety and capacity with minimal downtime.</p>
+        <h3 data-en="Repair & Modification" data-zh="维修改造">Repair & Modification</h3>
+        <p data-en="Damaged uprights or beams don't mean shutdown. We assess, repair, or reconfigure your existing racking quickly — restoring safety and capacity with minimal downtime."
+           data-zh="立柱或横梁损坏不代表必须停工。我们快速评估并维修或重新配置现有货架，以最短停工时间恢复安全性和承载能力。">
+          Damaged uprights or beams don't mean shutdown. We assess, repair, or reconfigure your existing racking quickly — restoring safety and capacity with minimal downtime.
+        </p>
       </div>
     </div>
+
     <div class="service-card">
-      <div class="svc-img"><img src="images/svc-consulting.svg" alt="Consulting"></div>
+      <div class="svc-img">
+        <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=700&q=80"
+             alt="Storage consulting" loading="lazy">
+      </div>
       <div class="svc-num">04</div>
       <div class="svc-body">
-        <h3 data-en="Storage Consulting" data-zh="仓储咨询" data-es="Consultoría de almacenamiento" data-es="Consultoría de almacenamiento">Storage Consulting</h3>
-        <p data-en="Before you invest, we audit your space and model multiple layout scenarios. Our consultants deliver a clear capacity plan so every dollar is spent with confidence." data-zh="在投入资金之前，我们先审计空间并模拟多种布局方案，提供清晰的容量规划，让每一分投入都有据可依。" data-es="Antes de invertir, auditamos su espacio y modelamos múltiples escenarios. Nuestros consultores entregan un plan de capacidad claro para que invierta con confianza.">Before you invest, we audit your space and model multiple layout scenarios. Our consultants deliver a clear capacity plan so every dollar is spent with confidence.</p>
+        <h3 data-en="Storage Consulting" data-zh="仓储咨询">Storage Consulting</h3>
+        <p data-en="Before you invest, we audit your space and model multiple layout scenarios. Our consultants deliver a clear capacity plan so every dollar is spent with confidence."
+           data-zh="在投入资金之前，我们先审计空间并模拟多种布局方案，提供清晰的容量规划，让每一分投入都有据可依。">
+          Before you invest, we audit your space and model multiple layout scenarios. Our consultants deliver a clear capacity plan so every dollar is spent with confidence.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Process ── -->
+<section id="process">
+  <div class="process-hd">
+    <div class="section-tag" data-en="How It Works" data-zh="服务流程">How It Works</div>
+    <h2 class="section-title" data-en="Our Process" data-zh="我们的流程">Our Process</h2>
+  </div>
+
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-n">01</div>
+      <h4 data-en="Consultation" data-zh="初步咨询">Consultation</h4>
+      <p data-en="Tell us your goals and timeline. We'll arrange a site visit or virtual walkthrough within 48 hours."
+         data-zh="告知我们您的目标和时间计划，我们将在48小时内安排现场考察或在线勘查。">
+        Tell us your goals and timeline. We'll arrange a site visit or virtual walkthrough within 48 hours.
+      </p>
+    </div>
+    <div class="step">
+      <div class="step-n">02</div>
+      <h4 data-en="Site Assessment" data-zh="现场勘查">Site Assessment</h4>
+      <p data-en="Our engineers measure your space, assess floor loading, and document existing infrastructure."
+         data-zh="工程师测量空间、评估地面承载能力，记录现有设施，为后续设计提供精准数据。">
+        Our engineers measure your space, assess floor loading, and document existing infrastructure.
+      </p>
+    </div>
+    <div class="step">
+      <div class="step-n">03</div>
+      <h4 data-en="Design & Quote" data-zh="设计报价">Design & Quote</h4>
+      <p data-en="Detailed layout design, materials spec, and a transparent fixed-price quote. No hidden costs."
+         data-zh="提供详细布局设计图、材料规格及透明固定报价，无任何隐性费用。">
+        Detailed layout design, materials spec, and a transparent fixed-price quote. No hidden costs.
+      </p>
+    </div>
+    <div class="step">
+      <div class="step-n">04</div>
+      <h4 data-en="Installation" data-zh="安装施工">Installation</h4>
+      <p data-en="Certified crew installs on your schedule. Every rack is load-tested and safety-checked at completion."
+         data-zh="认证团队按时施工，每组货架完工后均进行荷载测试和安全检查。">
+        Certified crew installs on your schedule. Every rack is load-tested and safety-checked at completion.
+      </p>
+    </div>
+    <div class="step">
+      <div class="step-n">05</div>
+      <h4 data-en="Handover & Support" data-zh="交付与支持">Handover & Support</h4>
+      <p data-en="Full documentation, safety certificates, and ongoing maintenance support long after install day."
+         data-zh="提供完整文档、安全合规证书及长期持续的维护支持。">
+        Full documentation, safety certificates, and ongoing maintenance support long after install day.
+      </p>
+    </div>
+  </div>
+
+  <div class="process-imgs">
+    <div class="proc-img">
+      <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80"
+           alt="Site assessment" loading="lazy">
+      <div class="proc-label">
+        <small data-en="Step 02" data-zh="第二步">Step 02</small>
+        <span data-en="Site Assessment" data-zh="现场勘查">Site Assessment</span>
+      </div>
+    </div>
+    <div class="proc-img">
+      <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80"
+           alt="Installation" loading="lazy">
+      <div class="proc-label">
+        <small data-en="Step 04" data-zh="第四步">Step 04</small>
+        <span data-en="Installation" data-zh="安装施工">Installation</span>
+      </div>
+    </div>
+    <div class="proc-img">
+      <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80"
+           alt="Completed project" loading="lazy">
+      <div class="proc-label">
+        <small data-en="Step 05" data-zh="第五步">Step 05</small>
+        <span data-en="Project Complete" data-zh="交付完成">Project Complete</span>
       </div>
     </div>
   </div>
 </section>
 
-<section id="process">
-  <div class="process-hd">
-    <div class="section-tag" data-en="How It Works" data-zh="服务流程" data-es="Cómo trabajamos">How It Works</div>
-    <h2 class="section-title" data-en="Our Process" data-zh="我们的流程" data-es="Nuestro proceso">Our Process</h2>
-  </div>
-  <div class="process-steps">
-    <div class="step"><div class="step-n">01</div><h4 data-en="Consultation" data-zh="初步咨询" data-es="Consulta inicial">Consultation</h4><p data-en="Tell us your goals and timeline. We'll arrange a site visit or virtual walkthrough within 48 hours." data-zh="告知我们您的目标和时间计划，我们将在48小时内安排现场考察或在线勘查。" data-es="Cuéntenos sus objetivos y plazos. Organizaremos una visita presencial o virtual en 48 horas.">Tell us your goals and timeline. We'll arrange a site visit or virtual walkthrough within 48 hours.</p></div>
-    <div class="step"><div class="step-n">02</div><h4 data-en="Site Assessment" data-zh="现场勘查" data-es="Evaluación del sitio" data-es="Evaluación del sitio">Site Assessment</h4><p data-en="Our engineers measure your space, assess floor loading, and document existing infrastructure." data-zh="工程师测量空间、评估地面承载能力，记录现有设施，为后续设计提供精准数据。" data-es="Nuestros ingenieros miden su espacio, evalúan la capacidad del suelo y documentan la infraestructura existente.">Our engineers measure your space, assess floor loading, and document existing infrastructure.</p></div>
-    <div class="step"><div class="step-n">03</div><h4 data-en="Design & Quote" data-zh="设计报价" data-es="Diseño y cotización">Design & Quote</h4><p data-en="Detailed layout design, materials spec, and a transparent fixed-price quote. No hidden costs." data-zh="提供详细布局设计图、材料规格及透明固定报价，无任何隐性费用。" data-es="Diseño de layout detallado, especificaciones de materiales y cotización fija transparente. Sin costos ocultos.">Detailed layout design, materials spec, and a transparent fixed-price quote. No hidden costs.</p></div>
-    <div class="step"><div class="step-n">04</div><h4 data-en="Installation" data-zh="安装施工" data-es="Instalación">Installation</h4><p data-en="Certified crew installs on your schedule. Every rack is load-tested and safety-checked at completion." data-zh="认证团队按时施工，每组货架完工后均进行荷载测试和安全检查。" data-es="Equipo certificado instala según su agenda. Cada estantería es probada bajo carga y verificada al finalizar.">Certified crew installs on your schedule. Every rack is load-tested and safety-checked at completion.</p></div>
-    <div class="step"><div class="step-n">05</div><h4 data-en="Handover & Support" data-zh="交付与支持" data-es="Entrega y soporte">Handover & Support</h4><p data-en="Full documentation, safety certificates, and ongoing maintenance support long after install day." data-zh="提供完整文档、安全合规证书及长期持续的维护支持。" data-es="Documentación completa, certificados de seguridad y soporte de mantenimiento continuo mucho después del día de instalación.">Full documentation, safety certificates, and ongoing maintenance support long after install day.</p></div>
-  </div>
-  <div class="process-imgs">
-    <div class="proc-img">
-      <img src="images/proc-assessment.svg" alt="Site Assessment">
-      <div class="proc-label"><small data-en="Step 02" data-zh="第二步" data-es="Paso 02">Step 02</small><span data-en="Site Assessment" data-zh="现场勘查">Site Assessment</span></div>
-    </div>
-    <div class="proc-img">
-      <img src="images/proc-installation.svg" alt="Installation">
-      <div class="proc-label"><small data-en="Step 04" data-zh="第四步" data-es="Paso 04">Step 04</small><span data-en="Installation" data-zh="安装施工">Installation</span></div>
-    </div>
-    <div class="proc-img">
-      <img src="images/proc-completed.svg" alt="Completed">
-      <div class="proc-label"><small data-en="Step 05" data-zh="第五步" data-es="Paso 05">Step 05</small><span data-en="Project Complete" data-zh="交付完成" data-es="Proyecto completado">Project Complete</span></div>
-    </div>
-  </div>
-</section>
-
+<!-- ── Why Us ── -->
 <section id="why">
-  <div class="section-tag" data-en="Why Summit" data-zh="为何选择我们" data-es="Por qué Summit">Why Summit</div>
-  <h2 class="section-title" data-en="The Summit Difference" data-zh="Summit 的优势" data-es="La diferencia Summit">The Summit Difference</h2>
+  <div class="section-tag" data-en="Why Summit" data-zh="为何选择我们">Why Summit</div>
+  <h2 class="section-title" data-en="The Summit Difference" data-zh="Summit 的优势">The Summit Difference</h2>
+
   <div class="why-grid">
     <div class="why-pts">
-      <div class="why-pt"><div class="why-ico"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M3 10L8 15L17 5" stroke="#1b3d5f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h4 data-en="Safety-First Approach" data-zh="安全第一" data-es="Seguridad ante todo">Safety-First Approach</h4><p data-en="Every installation meets or exceeds local building codes and industry standards. Our team is fully certified and insured." data-zh="每个安装项目均满足或超越当地建筑规范，团队持有完整资质认证及保险。" data-es="Cada instalación cumple o supera los códigos de construcción locales y estándares del sector. Nuestro equipo está completamente certificado y asegurado.">Every installation meets or exceeds local building codes and industry standards. Our team is fully certified and insured.</p></div></div>
-      <div class="why-pt"><div class="why-ico"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" stroke="#1b3d5f" stroke-width="1.5"/><line x1="2" y1="8" x2="18" y2="8" stroke="#1b3d5f" stroke-width="1.5"/><line x1="2" y1="14" x2="18" y2="14" stroke="#1b3d5f" stroke-width="1.5"/></svg></div><div><h4 data-en="End-to-End Service" data-zh="全程一站式服务" data-es="Servicio integral">End-to-End Service</h4><p data-en="One team, one contact. From first site visit to final safety certificate — we handle everything." data-zh="一支团队，一个联络人。从首次勘查到最终安全证书，全程由我们负责。" data-es="Un equipo, un contacto. Desde la primera visita hasta el certificado final de seguridad — nosotros nos encargamos de todo.">One team, one contact. From first site visit to final safety certificate — we handle everything.</p></div></div>
-      <div class="why-pt"><div class="why-ico"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#1b3d5f" stroke-width="1.5"/><path d="M10 6V10L13 12" stroke="#1b3d5f" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><h4 data-en="On-Time Delivery" data-zh="准时交付" data-es="Entrega puntual">On-Time Delivery</h4><p data-en="Downtime costs money. Our project management ensures every installation is completed on schedule." data-zh="我们深知停工就是损失，严格的项目管理确保每个安装任务准时完成。" data-es="El tiempo de inactividad cuesta dinero. Nuestra gestión de proyectos garantiza que cada instalación se complete a tiempo.">Downtime costs money. Our project management ensures every installation is completed on schedule.</p></div></div>
-      <div class="why-pt"><div class="why-ico"><svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M10 2L12.4 7.6L18 8.2L14 12L15.2 18L10 15L4.8 18L6 12L2 8.2L7.6 7.6Z" stroke="#1b3d5f" stroke-width="1.5" stroke-linejoin="round"/></svg></div><div><h4 data-en="500+ Projects" data-zh="500+ 项目经验" data-es="500+ proyectos">500+ Projects</h4><p data-en="Proven across distribution centers, manufacturing plants, and retail warehouses throughout the region." data-zh="累计完成500+项目，涵盖配送中心、制造工厂及零售仓库，遍布全地区。" data-es="Demostrado en centros de distribución, plantas manufactureras y almacenes minoristas en toda la región.">Proven across distribution centers, manufacturing plants, and retail warehouses throughout the region.</p></div></div>
+      <div class="why-pt">
+        <div class="why-ico">
+          <svg width="17" height="17" viewBox="0 0 20 20" fill="none">
+            <path d="M3 10L8 15L17 5" stroke="#1b3d5f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <h4 data-en="Safety-First Approach" data-zh="安全第一">Safety-First Approach</h4>
+          <p data-en="Every installation meets or exceeds local building codes and industry standards. Our team is fully certified and insured."
+             data-zh="每个安装项目均满足或超越当地建筑规范，团队持有完整资质认证及保险。">
+            Every installation meets or exceeds local building codes and industry standards. Our team is fully certified and insured.
+          </p>
+        </div>
+      </div>
+      <div class="why-pt">
+        <div class="why-ico">
+          <svg width="17" height="17" viewBox="0 0 20 20" fill="none">
+            <rect x="2" y="2" width="16" height="16" stroke="#1b3d5f" stroke-width="1.5"/>
+            <line x1="2" y1="8" x2="18" y2="8" stroke="#1b3d5f" stroke-width="1.5"/>
+            <line x1="2" y1="14" x2="18" y2="14" stroke="#1b3d5f" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div>
+          <h4 data-en="End-to-End Service" data-zh="全程一站式服务">End-to-End Service</h4>
+          <p data-en="One team, one contact. From first site visit to final safety certificate — we handle everything."
+             data-zh="一支团队，一个联络人。从首次勘查到最终安全证书，全程由我们负责。">
+            One team, one contact. From first site visit to final safety certificate — we handle everything.
+          </p>
+        </div>
+      </div>
+      <div class="why-pt">
+        <div class="why-ico">
+          <svg width="17" height="17" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="8" stroke="#1b3d5f" stroke-width="1.5"/>
+            <path d="M10 6V10L13 12" stroke="#1b3d5f" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <h4 data-en="On-Time Delivery" data-zh="准时交付">On-Time Delivery</h4>
+          <p data-en="Downtime costs money. Our project management ensures every installation is completed on schedule."
+             data-zh="我们深知停工就是损失，严格的项目管理确保每个安装任务准时完成。">
+            Downtime costs money. Our project management ensures every installation is completed on schedule.
+          </p>
+        </div>
+      </div>
+      <div class="why-pt">
+        <div class="why-ico">
+          <svg width="17" height="17" viewBox="0 0 20 20" fill="none">
+            <path d="M10 2L12.4 7.6L18 8.2L14 12L15.2 18L10 15L4.8 18L6 12L2 8.2L7.6 7.6Z"
+                  stroke="#1b3d5f" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <h4 data-en="500+ Projects" data-zh="500+ 项目经验">500+ Projects</h4>
+          <p data-en="Proven across distribution centers, manufacturing plants, and retail warehouses throughout the region."
+             data-zh="累计完成500+项目，涵盖配送中心、制造工厂及零售仓库，遍布全地区。">
+            Proven across distribution centers, manufacturing plants, and retail warehouses throughout the region.
+          </p>
+        </div>
+      </div>
     </div>
+
     <div class="why-visual">
-      <div class="why-bg"><img src="images/why-warehouse.svg" alt="Warehouse"></div>
+      <div class="why-bg">
+        <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=900&q=80"
+             alt="Warehouse interior" loading="lazy">
+      </div>
       <div class="why-ov"></div>
       <div class="why-content">
         <svg viewBox="0 0 360 62" xmlns="http://www.w3.org/2000/svg" style="width:300px;margin-bottom:22px">
-          <g transform="translate(0,31)"><polygon points="0,17 13,17 40,-17 27,-17" fill="#fff" opacity="0.3"/><polygon points="17,17 32,17 59,-17 44,-17" fill="#fff" opacity="0.65"/><polygon points="37,17 62,17 89,-17 64,-17" fill="#fff"/></g>
-          <text font-family="'Barlow Condensed',sans-serif" font-size="38" font-weight="700" letter-spacing="5" fill="#fff" x="106" y="43">SUMMIT</text>
-          <text font-family="'Barlow Condensed',sans-serif" font-size="9.5" font-weight="400" letter-spacing="4" fill="rgba(255,255,255,0.38)" x="108" y="58">INDUSTRIAL GROUP</text>
+          <g transform="translate(0,31)">
+            <polygon points="0,17 13,17 40,-17 27,-17" fill="#fff" opacity="0.3"/>
+            <polygon points="17,17 32,17 59,-17 44,-17" fill="#fff" opacity="0.65"/>
+            <polygon points="37,17 62,17 89,-17 64,-17" fill="#fff"/>
+          </g>
+          <text font-family="'Barlow Condensed',sans-serif" font-size="38" font-weight="700"
+                letter-spacing="5" fill="#fff" x="106" y="43">SUMMIT</text>
+          <text font-family="'Barlow Condensed',sans-serif" font-size="9.5" font-weight="400"
+                letter-spacing="4" fill="rgba(255,255,255,0.38)" x="108" y="58">INDUSTRIAL GROUP</text>
         </svg>
-        <p class="why-quote" data-en='"We don&apos;t just install racks —<br>we build <strong>systems that work</strong><br>for your business."' data-zh='"我们不只是安装货架，<br>我们构建真正<strong>适合您业务</strong><br>的仓储系统。"' data-es='"No solo instalamos estanterías —<br>construimos <strong>sistemas que funcionan</strong><br>para su negocio."'>"We don't just install racks —<br>we build <strong>systems that work</strong><br>for your business."</p>
+        <p class="why-quote"
+           data-en='"We don&apos;t just install racks —<br>we build <strong>systems that work</strong><br>for your business."'
+           data-zh='"我们不只是安装货架，<br>我们构建真正<strong>适合您业务</strong><br>的仓储系统。"'>
+          "We don't just install racks —<br>we build <strong>systems that work</strong><br>for your business."
+        </p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ── Contact ── -->
 <section id="contact">
-  <div class="section-tag" data-en="Get Started" data-zh="开始合作" data-es="Comenzar">Get Started</div>
-  <h2 class="section-title" data-en="Request a Quote" data-zh="获取报价" data-es="Solicitar cotización">Request a Quote</h2>
+  <div class="section-tag" data-en="Get Started" data-zh="开始合作">Get Started</div>
+  <h2 class="section-title" data-en="Request a Quote" data-zh="获取报价">Request a Quote</h2>
+
   <div class="contact-wrap">
     <div class="contact-info">
-      <h3 data-en="Let's Talk About Your Project" data-zh="聊聊您的项目" data-es="Hablemos de su proyecto">Let's Talk About Your Project</h3>
-      <p data-en="Fill in the form and one of our specialists will get back to you within one business day with a tailored proposal." data-zh="填写表单，我们的专业顾问将在一个工作日内联系您并提供定制方案。" data-es="Complete el formulario y uno de nuestros especialistas le responderá en un día hábil con una propuesta personalizada.">Fill in the form and one of our specialists will get back to you within one business day with a tailored proposal.</p>
+      <h3 data-en="Let's Talk About Your Project" data-zh="聊聊您的项目">Let's Talk About Your Project</h3>
+      <p data-en="Fill in the form and one of our specialists will get back to you within one business day with a tailored proposal."
+         data-zh="填写表单，我们的专业顾问将在一个工作日内联系您并提供定制方案。">
+        Fill in the form and one of our specialists will get back to you within one business day with a tailored proposal.
+      </p>
       <div class="c-items">
-        <div class="c-item"><div class="c-ico"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 4L8 9L14 4M2 4H14V13H2V4Z" stroke="white" stroke-width="1.2" stroke-linejoin="round"/></svg></div><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b7ded9d1d8f7c4c2dadadec3ded9d3c2c4c3c5ded6dbd0c5d8c2c799d4d8da">[email&#160;protected]</a></div>
-        <div class="c-item"><div class="c-ico"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 2H6L7.5 6L5.5 7.5C6.5 9.5 8 11 10 12L11.5 10L15 11.5V14.5C15 14.5 12 16 8 12C4 8 2 5 2 5L3 2Z" stroke="white" stroke-width="1.2" stroke-linejoin="round"/></svg></div>+1 (555) 000-0000</div>
-        <div class="c-item"><div class="c-ico"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="6" r="3" stroke="white" stroke-width="1.2"/><path d="M2 14C2 11 4.7 9 8 9C11.3 9 14 11 14 14" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg></div><span data-en="Mon–Fri, 8:00 AM – 5:00 PM" data-zh="周一至周五 上午8:00–下午5:00" data-es="Lun–Vie, 8:00 AM – 5:00 PM">Mon–Fri, 8:00 AM – 5:00 PM</span></div>
+        <div class="c-item">
+          <div class="c-ico">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <path d="M2 4L8 9L14 4M2 4H14V13H2V4Z" stroke="white" stroke-width="1.2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          info@summitindustrialgroup.com
+        </div>
+        <div class="c-item">
+          <div class="c-ico">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <path d="M3 2H6L7.5 6L5.5 7.5C6.5 9.5 8 11 10 12L11.5 10L15 11.5V14.5C15 14.5 12 16 8 12C4 8 2 5 2 5L3 2Z"
+                    stroke="white" stroke-width="1.2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          +1 (555) 000-0000
+        </div>
+        <div class="c-item">
+          <div class="c-ico">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <circle cx="8" cy="6" r="3" stroke="white" stroke-width="1.2"/>
+              <path d="M2 14C2 11 4.7 9 8 9C11.3 9 14 11 14 14" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span data-en="Mon–Fri, 8:00 AM – 5:00 PM" data-zh="周一至周五 上午8:00–下午5:00">
+            Mon–Fri, 8:00 AM – 5:00 PM
+          </span>
+        </div>
       </div>
     </div>
+
     <div class="contact-form">
       <div id="form-fields">
-        <div class="form-title" data-en="Tell Us About Your Project" data-zh="告诉我们您的项目需求" data-es="Cuéntenos sobre su proyecto">Tell Us About Your Project</div>
-        <div class="form-row">
-          <div class="form-g"><label data-en="First Name *" data-zh="名字 *" data-es="Nombre *">First Name *</label><input type="text" id="fname" placeholder="John"></div>
-          <div class="form-g"><label data-en="Last Name *" data-zh="姓氏 *" data-es="Apellido *">Last Name *</label><input type="text" id="lname" placeholder="Smith"></div>
+        <div class="form-title" data-en="Tell Us About Your Project" data-zh="告诉我们您的项目需求">
+          Tell Us About Your Project
         </div>
         <div class="form-row">
-          <div class="form-g"><label data-en="Email *" data-zh="邮箱 *" data-es="Correo electrónico *">Email *</label><input type="email" id="email" placeholder="john@company.com"></div>
-          <div class="form-g"><label data-en="Phone" data-zh="电话" data-es="Teléfono">Phone</label><input type="tel" id="phone" placeholder="+1 (555) 000-0000"></div>
+          <div class="form-g">
+            <label data-en="First Name *" data-zh="名字 *">First Name *</label>
+            <input type="text" id="fname" placeholder="John" autocomplete="given-name">
+          </div>
+          <div class="form-g">
+            <label data-en="Last Name *" data-zh="姓氏 *">Last Name *</label>
+            <input type="text" id="lname" placeholder="Smith" autocomplete="family-name">
+          </div>
         </div>
-        <div class="form-g"><label data-en="Company *" data-zh="公司 *" data-es="Empresa *">Company *</label><input type="text" id="company" placeholder="Your Company Ltd."></div>
+        <div class="form-row">
+          <div class="form-g">
+            <label data-en="Email *" data-zh="邮箱 *">Email *</label>
+            <input type="email" id="email" placeholder="john@company.com" autocomplete="email">
+          </div>
+          <div class="form-g">
+            <label data-en="Phone" data-zh="电话">Phone</label>
+            <input type="tel" id="phone" placeholder="+1 (555) 000-0000" autocomplete="tel">
+          </div>
+        </div>
         <div class="form-g">
-          <label data-en="Service Required *" data-zh="所需服务 *" data-es="Servicio requerido *">Service Required *</label>
+          <label data-en="Company *" data-zh="公司 *">Company *</label>
+          <input type="text" id="company" placeholder="Your Company Ltd." autocomplete="organization">
+        </div>
+        <div class="form-g">
+          <label data-en="Service Required *" data-zh="所需服务 *">Service Required *</label>
           <select id="service">
-            <option value="" disabled selected data-en="Select a service..." data-zh="请选择服务..." data-es="Seleccione un servicio...">Select a service...</option>
+            <option value="" disabled selected data-en="Select a service..." data-zh="请选择服务...">Select a service...</option>
             <option data-en="Racking Design" data-zh="货架设计">Racking Design</option>
             <option data-en="Rack Installation" data-zh="货架安装">Rack Installation</option>
-            <option data-en="Repair & Modification" data-zh="维修改造">Repair & Modification</option>
+            <option data-en="Repair & Modification" data-zh="维修改造">Repair &amp; Modification</option>
             <option data-en="Storage Consulting" data-zh="仓储咨询">Storage Consulting</option>
-            <option data-en="Multiple Services" data-zh="多项服务" data-es="Múltiples servicios">Multiple Services</option>
+            <option data-en="Multiple Services" data-zh="多项服务">Multiple Services</option>
           </select>
         </div>
         <div class="form-row">
-          <div class="form-g"><label data-en="Warehouse Size (sqft)" data-zh="仓库面积（平方英尺）" data-es="Tamaño del almacén (m²)">Warehouse Size (sqft)</label><input type="text" id="size" placeholder="e.g. 20,000"></div>
           <div class="form-g">
-            <label data-en="Timeline" data-zh="预计时间" data-es="Plazo estimado">Timeline</label>
+            <label data-en="Warehouse Size (sqft)" data-zh="仓库面积（平方英尺）">Warehouse Size (sqft)</label>
+            <input type="text" id="size" placeholder="e.g. 20,000">
+          </div>
+          <div class="form-g">
+            <label data-en="Timeline" data-zh="预计时间">Timeline</label>
             <select id="timeline">
-              <option value="" disabled selected data-en="Select..." data-zh="请选择..." data-es="Seleccionar...">Select...</option>
-              <option data-en="ASAP" data-zh="尽快" data-es="Lo antes posible">ASAP</option>
-              <option data-en="Within 1 month" data-zh="1个月内" data-es="En 1 mes">Within 1 month</option>
-              <option data-en="1–3 months" data-zh="1-3个月" data-es="1–3 meses">1–3 months</option>
-              <option data-en="3–6 months" data-zh="3-6个月" data-es="3–6 meses">3–6 months</option>
-              <option data-en="Flexible" data-zh="时间灵活" data-es="Flexible">Flexible</option>
+              <option value="" disabled selected data-en="Select..." data-zh="请选择...">Select...</option>
+              <option data-en="ASAP" data-zh="尽快">ASAP</option>
+              <option data-en="Within 1 month" data-zh="1个月内">Within 1 month</option>
+              <option data-en="1–3 months" data-zh="1-3个月">1–3 months</option>
+              <option data-en="3–6 months" data-zh="3-6个月">3–6 months</option>
+              <option data-en="Flexible" data-zh="时间灵活">Flexible</option>
             </select>
           </div>
         </div>
-        <div class="form-g"><label data-en="Project Details" data-zh="项目详情" data-es="Detalles del proyecto">Project Details</label><textarea id="details" placeholder="Tell us about your warehouse and what you want to achieve..."></textarea></div>
-        <button class="form-submit" onclick="submitForm()" data-en="Submit Request →" data-zh="提交需求 →" data-es="Enviar solicitud →">Submit Request →</button>
+        <div class="form-g">
+          <label data-en="Project Details" data-zh="项目详情">Project Details</label>
+          <textarea id="details" placeholder="Tell us about your warehouse and what you want to achieve..."></textarea>
+        </div>
+        <button class="form-submit" onclick="submitForm()"
+                data-en="Submit Request →" data-zh="提交需求 →">
+          Submit Request →
+        </button>
       </div>
+
       <div class="form-ok" id="form-ok">
-        <svg width="50" height="50" viewBox="0 0 56 56" fill="none" style="margin:0 auto 16px"><circle cx="28" cy="28" r="27" stroke="#1b3d5f" stroke-width="1.5"/><path d="M16 28L24 36L40 20" stroke="#1b3d5f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <h4 data-en="Request Received!" data-zh="需求已收到！" data-es="¡Solicitud recibida!">Request Received!</h4>
-        <p data-en="Thank you. A Summit specialist will contact you within one business day." data-zh="感谢联系。Summit专业顾问将在一个工作日内与您取得联系。" data-es="Gracias. Un especialista de Summit se pondrá en contacto con usted en un día hábil.">Thank you. A Summit specialist will contact you within one business day.</p>
+        <svg width="50" height="50" viewBox="0 0 56 56" fill="none" style="margin:0 auto 16px;display:block">
+          <circle cx="28" cy="28" r="27" stroke="#1b3d5f" stroke-width="1.5"/>
+          <path d="M16 28L24 36L40 20" stroke="#1b3d5f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h4 data-en="Request Received!" data-zh="需求已收到！">Request Received!</h4>
+        <p data-en="Thank you. A Summit specialist will contact you within one business day."
+           data-zh="感谢联系。Summit专业顾问将在一个工作日内与您取得联系。">
+          Thank you. A Summit specialist will contact you within one business day.
+        </p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ── Footer ── -->
 <footer>
   <div>
-    <svg viewBox="0 0 400 68" xmlns="http://www.w3.org/2000/svg" style="height:52px;display:block;margin-bottom:10px">
-      <g transform="translate(0,34)"><polygon points="0,20 14,20 44,-20 30,-20" fill="#fff" opacity="0.3"/><polygon points="18,20 36,20 66,-20 48,-20" fill="#fff" opacity="0.65"/><polygon points="42,20 70,20 100,-20 72,-20" fill="#fff"/></g>
-      <text font-family="'Barlow Condensed',sans-serif" font-size="42" font-weight="700" letter-spacing="5" fill="#fff" x="118" y="46">SUMMIT</text>
-      <text font-family="'Barlow Condensed',sans-serif" font-size="11" font-weight="400" letter-spacing="4.5" fill="rgba(255,255,255,0.45)" x="120" y="63">INDUSTRIAL GROUP</text>
+    <svg viewBox="0 0 320 52" xmlns="http://www.w3.org/2000/svg"
+         style="height:30px;display:block;margin-bottom:9px">
+      <g transform="translate(0,26)">
+        <polygon points="0,13 10,13 32,-13 22,-13" fill="#fff" opacity="0.3"/>
+        <polygon points="13,13 25,13 47,-13 35,-13" fill="#fff" opacity="0.65"/>
+        <polygon points="29,13 48,13 70,-13 51,-13" fill="#fff"/>
+      </g>
+      <text font-family="'Barlow Condensed',sans-serif" font-size="26" font-weight="700"
+            letter-spacing="4" fill="#fff" x="82" y="34">SUMMIT</text>
+      <text font-family="'Barlow Condensed',sans-serif" font-size="8" font-weight="400"
+            letter-spacing="3" fill="rgba(255,255,255,0.3)" x="84" y="48">INDUSTRIAL GROUP</text>
     </svg>
-    <div class="footer-copy" data-en="© 2025 Summit Industrial Group. All rights reserved." data-zh="© 2025 Summit Industrial Group. 保留所有权利。" data-es="© 2025 Summit Industrial Group. Todos los derechos reservados.">© 2025 Summit Industrial Group. All rights reserved.</div>
+    <div class="footer-copy"
+         data-en="© 2025 Summit Industrial Group. All rights reserved."
+         data-zh="© 2025 Summit Industrial Group. 保留所有权利。">
+      © 2025 Summit Industrial Group. All rights reserved.
+    </div>
   </div>
   <div class="footer-links">
-    <a href="#services" data-en="Services" data-zh="服务项目" data-es="Servicios">Services</a>
-    <a href="#process" data-en="Process" data-zh="服务流程" data-es="Proceso">Process</a>
-    <a href="#why" data-en="Why Us" data-zh="为何选择我们" data-es="Por qué nosotros">Why Us</a>
-    <a href="#contact" data-en="Contact" data-zh="联系我们" data-es="Contacto">Contact</a>
+    <a href="#services" data-en="Services" data-zh="服务项目">Services</a>
+    <a href="#process" data-en="Process" data-zh="服务流程">Process</a>
+    <a href="#why" data-en="Why Us" data-zh="为何选择我们">Why Us</a>
+    <a href="#contact" data-en="Contact" data-zh="联系我们">Contact</a>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-let lang='en';
-function setLang(l){
-  lang=l;
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.lang-btn').forEach(b=>{ if(b.getAttribute('onclick')===`setLang('${l}')`) b.classList.add('active'); });
-  document.querySelectorAll('[data-en]').forEach(el=>{
-    const val=el.getAttribute('data-'+l);
-    if(!val)return;
-    if(el.tagName==='INPUT'||el.tagName==='TEXTAREA')return;
-    if(val.includes('<'))el.innerHTML=val;
-    else el.textContent=val;
-  });
-  document.querySelectorAll('select option[data-en]').forEach(o=>{
-    o.textContent=o.getAttribute('data-'+l)||o.getAttribute('data-en');
-  });
-  document.getElementById('details').placeholder=l==='zh'
-    ?'请描述您的仓库情况、现有设施以及希望达到的目标...'
-    :l==='es'
-    ?'Cuéntenos sobre su almacén, la configuración actual y lo que desea lograr...'
-    :'Tell us about your warehouse and what you want to achieve...';
-}
-function submitForm(){
-  const req=['fname','lname','email','company','service'];
-  let ok=true;
-  req.forEach(id=>{const el=document.getElementById(id);if(!el.value.trim()){el.style.borderColor='#c0392b';ok=false;}else el.style.borderColor='';});
-  if(!ok)return;
-  document.getElementById('form-fields').style.display='none';
-  document.getElementById('form-ok').classList.add('show');
-}
-document.querySelectorAll('a[href^
+<script src="js/main.js"></script>
+</body>
+</html>
